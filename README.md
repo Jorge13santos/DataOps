@@ -47,39 +47,39 @@
     <value>0.0.0.0</value>
     <description>        
     </description>
-   </property>
-    <property>
+    </property>
+     <property>
      <name>dfs.namenode.servicerpc-bind-host</name>
      <value>0.0.0.0</value>
      <description>        
      </description>
-   </property>
-   <property>
+     </property>
+     <property>
      <name>dfs.namenode.http-bind-host</name>
      <value>0.0.0.0</value>
     <description>       
      </description>
-  </property>
-  <property>
+    </property>
+    <property>
     <name>dfs.datanode.use.datanode.hostname</name>
     <value>false</value>
     <description>
     </description>
-  </property>
-  <property>
+    </property>
+    <property>
     <name>dfs.namenode.https-bind-host</name>
     <value>0.0.0.0</value>
     <description>        
     </description>
       </property>
-  <property>
+    <property>
       <name>dfs.replication</name>
       <value>1</value>
-  </property>
-  <property>
+    </property>
+    <property>
     <name>dfs.permissions</name>
     <value>false</value>
-  </property>
-</configuration>
+     </property>
+    </configuration>
      
   
