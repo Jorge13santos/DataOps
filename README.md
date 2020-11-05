@@ -135,4 +135,18 @@
 
       landing_folder >> copying_logs >> uncompress >> send_to_datalake
      
-  
+   ### Agora que você já tem todos os pré requisitos, vamos subir o ambiente utilizando o comando vagrant up –provision.
+       PS C:\Users\1511 MXTI\DataOps> vagrant up --provision
+       Bringing machine 'datalake' up with 'virtualbox' provider...
+       Bringing machine 'airflow' up with 'virtualbox' provider...
+        ==> datalake: Importing base box 'ubuntu/bionic64'...
+  ### comando vagrant status pra saber se elas estão no ar.
+     S C:\Users\1511 MXTI\DataOps> vagrant status
+     Current machine states:
+
+     datalake                  running (virtualbox)
+     airflow                   running (virtualbox)
+   
+  ### navegador: http://192.168.33.100:9870/
+      Isso mostra que o seu Hadoop já está em execução.
+      
