@@ -81,5 +81,58 @@
     <value>false</value>
      </property>
     </configuration>
+    
+   ### Agora para o Airflow, vamos precisar criar um arquivo chamado dataops.py
+       from datetime import timedelta
+    from airflow import DAG
+    from airflow.operators.bash_operator import BashOperator
+    from airflow.utils.dates import days_ago
+
+    default_args = {
+     'owner': 'airflow',
+     'depends_on_past': False,
+     'start_date': days_ago(2),
+     'email': ['alisson.copyleft@gmail.com'],
+     'email_on_failure': False,
+     'email_on_retry': False,
+     'retries': 1,
+     'retry_delay': timedelta(minutes=5),
+      }
+     dag = DAG(
+    'dataops',
+    default_args=default_args,
+    description='Retrieving apache logs',
+    schedule_interval=timedelta(days=1),
+     )
+
+    landing_folder = BashOperator(
+     task_id='landing_folder',
+    bash_command='rm -rf /tmp/$(date +%Y%m%d) ; mkdir /tmp/$( date +%Y%m%d )',
+    dag=dag,
+      )
+
+    copying_logs = BashOperator(
+    task_id='copying_logs',
+    bash_command='scp -i /root/chave.pem alisson@alissonmachado.com.br:/var/log/apache2/* /tmp/$(date +%Y%m%d)/ ',
+    dag=dag,
+     )
+
+     uncompress = BashOperator(
+     task_id='uncompress',
+     depends_on_past=False,
+    bash_command='cd /tmp/$(date +%Y%m%d) ; ls -1 *.gz  | xargs -i gunzip {}',
+    retries=3,
+    dag=dag,
+ )
+
+    send_to_datalake = BashOperator(
+    task_id='send_to_datalake',
+    depends_on_past=False,
+    bash_command='/opt/hadoop/bin/hdfs dfs  -fs hdfs://192.168.33.100:9000/  -put /tmp/$(date +%Y%m%d)/access* /raw',
+    retries=3,
+    dag=dag,
+      )
+
+      landing_folder >> copying_logs >> uncompress >> send_to_datalake
      
   
