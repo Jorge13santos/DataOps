@@ -16,3 +16,12 @@
        PS C:\Users\1511 MXTI\DataOps>
    ### Substitúa o conteudo do arquivo por este abaixo
         Arquivo acima 
+        
+  ### No Vagrantfile que eu criei, vamos subir duas VMs, uma chamada Datalake e a outra chamada Airflow:
+
+     Datalake: 192.168.33.100
+     Ariflow: 192.168.33.111
+
+  ### Agora dentro do mesmo diretório também crie alguns arquivos que serão necessários para fazer o provisionamento do HDFS.
+
+     Arquivo: core-site.xml
