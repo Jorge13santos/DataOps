@@ -24,4 +24,18 @@
 
   ### Agora dentro do mesmo diretório também crie alguns arquivos que serão necessários para fazer o provisionamento do HDFS.
 
-     Arquivo: core-site.xml
+  ### Arquivo: core-site.xml
+      <?xml version="1.0" encoding="UTF-8"?>
+      <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+      <configuration>
+      <property>
+      <name>fs.defaultFS</name>
+      <value>hdfs://192.168.33.100:9000</value>
+      </property>
+      <property>
+     <name>dfs.data.dir</name>
+     <value>/</value>
+     </property>
+     </configuration>
+     
+  
